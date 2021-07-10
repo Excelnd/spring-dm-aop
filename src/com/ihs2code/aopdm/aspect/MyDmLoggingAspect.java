@@ -12,7 +12,7 @@ public class MyDmLoggingAspect {
 	
 	// start with an @Before advice
 	
-	@Before("execution(public void addAccount())")
+	@Before("execution(public void com.ihs2code.aopdm.dao.AccountDAO.addAccount())")
 	public void beforeAddAccountAdvice() {
 		
 		System.out.println("\n============>> Executing @Before advice on addAccount() method ");
