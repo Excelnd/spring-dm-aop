@@ -18,6 +18,12 @@ public class MainDmApp {
 		// call the business method
 		theAccountDAO.addAccount();
 		
+		// retest
+		System.out.println("\n let's call it again!\n");
+		
+		// call the business method again
+		theAccountDAO.addAccount();
+		
 		// close the context
 		context.close();
 
