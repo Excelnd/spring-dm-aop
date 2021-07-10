@@ -21,7 +21,8 @@ public class MainDmApp {
 				context.getBean("membershipDAO", MembershipDAO.class);
 		
 		// call the business method
-		theAccountDAO.addAccount();
+		Account myAccount = new Account();
+		theAccountDAO.addAccount(myAccount);
 		
 		// call the membership business method
 		theMembershipDAO.addSillyMember();

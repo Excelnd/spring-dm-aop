@@ -2,10 +2,12 @@ package com.ihs2code.aopdm.dao;
 
 import org.springframework.stereotype.Component;
 
+import com.ihs2code.aopdm.Account;
+
 @Component
 public class AccountDAO {
 
-	public void addAccount() {
+	public void addAccount(Account theAccount) {
 		
 		System.out.println(getClass() + ": DOING MY DATABASE WORK: ADDING AN ACCOUNT");
 	}
