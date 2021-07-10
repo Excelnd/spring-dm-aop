@@ -3,6 +3,7 @@ package com.ihs2code.aopdm;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.ihs2code.aopdm.dao.AccountDAO;
+import com.ihs2code.aopdm.dao.MembershipDAO;
 
 public class MainDmApp {
 
@@ -15,14 +16,15 @@ public class MainDmApp {
 		// get the bean from spring container
 		AccountDAO theAccountDAO = context.getBean("accountDAO", AccountDAO.class);
 		
+		// get membership bean from spring container
+		MembershipDAO theMembershipDAO =
+				context.getBean("membershipDAO", MembershipDAO.class);
+		
 		// call the business method
 		theAccountDAO.addAccount();
 		
-		// retest
-		System.out.println("\n let's call it again!\n");
-		
-		// call the business method again
-		theAccountDAO.addAccount();
+		// call the membership business method
+		theMembershipDAO.addAccount();
 		
 		// close the context
 		context.close();
