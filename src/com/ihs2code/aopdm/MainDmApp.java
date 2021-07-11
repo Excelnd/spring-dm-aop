@@ -25,6 +25,13 @@ public class MainDmApp {
 		theAccountDAO.addAccount(myAccount, true);
 		theAccountDAO.doWork();
 		
+		// call the account DAO getter/setter methods
+		theAccountDAO.setName("foobar");
+		theAccountDAO.setServiceCode("silver");
+		
+		String name = theAccountDAO.getName();
+		String code = theAccountDAO.getServiceCode();
+		
 		// call the membership business method
 		theMembershipDAO.addSillyMember();
 		theMembershipDAO.goToSleep();
