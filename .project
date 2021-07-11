@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>spring-dm-aop-read-joinpoint</name>
+	<name>spring-dm-aop-z-after-returning</name>
 	<comment></comment>
 	<projects>
 	</projects>
