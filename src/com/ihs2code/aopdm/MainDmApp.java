@@ -22,6 +22,9 @@ public class MainDmApp {
 		
 		// call the business method
 		Account myAccount = new Account();
+		myAccount.setName("Alan");
+		myAccount.setLevel("Gold");
+		
 		theAccountDAO.addAccount(myAccount, true);
 		theAccountDAO.doWork();
 		
