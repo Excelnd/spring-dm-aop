@@ -24,7 +24,6 @@ import com.ihs2code.aopdm.AroundWithLoggerDmApp;
 public class MyDmLoggingAspect {
 	
 	private Logger myLogger = Logger.getLogger(getClass().getName());
-
 	
 	@Around("execution(* com.ihs2code.aopdm.service.*.getFortune(..))")
 	public Object aroundGetFortune(			
@@ -39,7 +38,18 @@ public class MyDmLoggingAspect {
 		long begin = System.currentTimeMillis();
 		
 		// excute method
-		Object result = theProceedingJoinPoint.proceed();
+		Object result = null;
+		
+		try {
+			result = theProceedingJoinPoint.proceed();
+		} catch (Exception e) {
+
+			// log the exception
+			myLogger.warning(e.getMessage());
+			
+			// rethrow exception
+			throw e;
+		}
 		
 		// get end timestamp 
 		long end = System.currentTimeMillis();
