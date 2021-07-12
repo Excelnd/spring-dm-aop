@@ -22,7 +22,7 @@ public class AfterFinallyDmApp {
 		
 		try {
 			// add a boolean flag to simulate exceptions
-			boolean tripWire = true;
+			boolean tripWire = false;
 			theAccounts = theAccountDAO.findAccounts(tripWire);
 			
 		}
