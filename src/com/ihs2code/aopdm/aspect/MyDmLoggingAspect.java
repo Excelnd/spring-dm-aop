@@ -1,6 +1,7 @@
 package com.ihs2code.aopdm.aspect;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -15,11 +16,15 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.ihs2code.aopdm.Account;
+import com.ihs2code.aopdm.AroundWithLoggerDmApp;
 
 @Aspect
 @Component
 @Order(2)
 public class MyDmLoggingAspect {
+	
+	private Logger myLogger = Logger.getLogger(getClass().getName());
+
 	
 	@Around("execution(* com.ihs2code.aopdm.service.*.getFortune(..))")
 	public Object aroundGetFortune(			
@@ -27,7 +32,7 @@ public class MyDmLoggingAspect {
 		
 		// print out the method we are advising on
 		String method = theProceedingJoinPoint.getSignature().toShortString();
-		System.out.println("\n========>>> Executing @Around on method: "
+		myLogger.info("\n========>>> Executing @Around on method: "
 						+ method);
 		
 		// get begin timestamp
@@ -41,7 +46,7 @@ public class MyDmLoggingAspect {
 		
 		// compute duration and display it 
 		long duration = end - begin;
-		System.out.println("\n========>>> Duration: "+ duration / 1000.0 + " seconds");
+		myLogger.info("\n========>>> Duration: "+ duration / 1000.0 + " seconds");
 		
 		return result;
 	}
@@ -52,7 +57,7 @@ public class MyDmLoggingAspect {
 		
 		// print out the method we are advising on
 		String method = theJoinPoint.getSignature().toShortString();
-		System.out.println("\n========>>> Executing @After(finally) on method: "
+		myLogger.info("\n========>>> Executing @After(finally) on method: "
 						+ method);
 	}
 	
@@ -64,10 +69,10 @@ public class MyDmLoggingAspect {
 		
 		// print out the method we are advising on
 		String method = theJoinPoint.getSignature().toShortString();
-		System.out.println("\n========>>> Executing @AfterThrowing on method: " + method);
+		myLogger.info("\n========>>> Executing @AfterThrowing on method: " + method);
 		
 		// log the exception
-		System.out.println("\n========>>> The exception is: " + theExc);
+		myLogger.info("\n========>>> The exception is: " + theExc);
 		
 	}
 	
@@ -80,17 +85,17 @@ public class MyDmLoggingAspect {
 		
 		// print out which method are advising on
 		String method = theJoinPoint.getSignature().toShortString();
-		System.out.println("\n==========>>>>> Executing @AfterReturning on method: " + method);
+		myLogger.info("\n==========>>>>> Executing @AfterReturning on method: " + method);
 		
 		// print out the results of the method call
-		System.out.println("\n==========>>>>> result is: " + result);
+		myLogger.info("\n==========>>>>> result is: " + result);
 		
 		// post-process the data ... modification
 		
 		// convert the account names to uppercase
 		converAccountNamesToUpperCase(result);
 		
-		System.out.println("\n=======>>>>> result is: " + result);
+		myLogger.info("\n=======>>>>> result is: " + result);
 		
 	}
 		
@@ -111,12 +116,12 @@ public class MyDmLoggingAspect {
 	@Before("com.ihs2code.aopdm.aspect.LuvAopExpressions.forDaoPackageNoGetterSetter()")
 	public void beforeAddAccountAdvice(JoinPoint theJoinPoint) {
 		
-		System.out.println("\n============>> Executing @Before advice on addAccount() method");
+		myLogger.info("\n============>> Executing @Before advice on addAccount() method");
 		
 		// display the method signature
 		MethodSignature methodSig = (MethodSignature) theJoinPoint.getSignature();
 		
-		System.out.println("Mehtod: " + methodSig);
+		myLogger.info("Mehtod: " + methodSig);
 		
 		// display method arguments
 
@@ -126,15 +131,15 @@ public class MyDmLoggingAspect {
 
 		// loop through args
 		for (Object tempArg : args) {
-			System.out.println(tempArg);
+			myLogger.info(tempArg.toString());
 
 			if (tempArg instanceof Account) {
 				
 				// downcast and print Account specific stuff
 				Account theAccount = (Account) tempArg;
 				
-				System.out.println("account name: " + theAccount.getName());
-				System.out.println("account name: " + theAccount.getLevel());
+				myLogger.info("account name: " + theAccount.getName());
+				myLogger.info("account name: " + theAccount.getLevel());
 				
 			}
 		}
