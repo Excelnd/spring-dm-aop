@@ -6,7 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.ihs2code.aopdm.dao.AccountDAO;
 
-public class AfterFinallyDmApp2 {
+public class AfterFinallyDmApp {
 
 	public static void main(String[] args) {
 		
