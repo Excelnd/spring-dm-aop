@@ -6,7 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.ihs2code.aopdm.dao.AccountDAO;
 
-public class AfterThrowingDmApp2 {
+public class AfterThrowingDmApp {
 
 	public static void main(String[] args) {
 		
@@ -21,8 +21,9 @@ public class AfterThrowingDmApp2 {
 		List<Account> theAccounts = null;
 		
 		try {
-			
-			theAccounts = theAccountDAO.findAccounts();
+			// add a boolean flag to simulate exceptions
+			boolean tripWire = true;
+			theAccounts = theAccountDAO.findAccounts(tripWire);
 			
 		}
 		catch (Exception exc) {

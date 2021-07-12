@@ -3,6 +3,8 @@ package com.ihs2code.aopdm.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.stereotype.Component;
 
 import com.ihs2code.aopdm.Account;
@@ -13,8 +15,13 @@ public class AccountDAO {
 	private String name;
 	private String serviceCode;
 
-	public List<Account> findAccounts() {
+	public List<Account> findAccounts(boolean tripWire) {
 		
+		// simulate an exception
+		if (tripWire) {
+			throw new RuntimeException("No soup for You!!!!!");
+		}
+				
 		List<Account> myAccounts = new ArrayList<>();
 		
 		// create a sample accounts
