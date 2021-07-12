@@ -36,7 +36,7 @@ public class MyDmLoggingAspect {
 		// excute method
 		Object result = theProceedingJoinPoint.proceed();
 		
-		// get end timestamp
+		// get end timestamp 
 		long end = System.currentTimeMillis();
 		
 		// compute duration and display it 
